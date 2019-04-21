@@ -81,9 +81,10 @@ public class GanKHomeAPresenter implements GanKHomeAContract.Presenter {
         } else {
             observable =  GanKModel.getInstance().getCategoryDate("福利", 1, 1);
         }
+        //Retrofit创建了请求接口对应的obsevable,但是在什么时候请求的？？？
         observable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())//观察者被调用的线程
+                .observeOn(AndroidSchedulers.mainThread())//观察者被回调的线程
                 .subscribe(new Observer<CategoryResult>() {
                     @Override
                     public void onError(Throwable e) {
